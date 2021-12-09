@@ -1,49 +1,22 @@
 import React from 'react'
 import {
-  Button,
-  Card,
-  Center,
-  Footer,
-  Header,
-  Navbar,
-  Page,
+    Footer,
+    Navbar,
 } from 'decentraland-ui'
-import { Props } from './App.types'
+import {Props} from './App.types'
 import './App.css'
+import {Outlet} from "react-router-dom";
+import ToastContainer from "../Toast/Toast.container";
 
-const App: React.FC<Props> = ({
-  address,
-  isConnected,
-  onConnect,
-  isConnecting,
-  error,
-}) => {
-  return (
-    <>
-      <Navbar />
-      <Page className="App">
-        <Center>
-          {!isConnected ? (
-            <>
-              <Button primary onClick={onConnect} loading={isConnecting}>
-                Connect
-              </Button>
-              {error ? <p className="error">{error}</p> : null}
-            </>
-          ) : (
-            <Card>
-              <Header>Wallet</Header>
-              <p>
-                <strong>Address:</strong>&nbsp;
-                {address.slice(0, 6) + '...' + address.slice(-4)}
-              </p>
-            </Card>
-          )}
-        </Center>
-      </Page>
-      <Footer />
-    </>
-  )
+const App: React.FC<Props> = () => {
+    return (
+        <>
+            <Navbar/>
+            <Outlet/>
+            <ToastContainer/>
+            <Footer/>
+        </>
+    )
 }
 
 export default App
